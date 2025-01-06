@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:projectapp/controller/selectdatecontroller.dart';
+import 'package:projectapp/controller/selectcontroller.dart';
 import 'package:projectapp/dummydb.dart';
 import 'package:projectapp/view/comdeyshow/comdeyshowwticket.dart';
 import 'package:projectapp/view/musicshow/showmusicticket.dart';
@@ -29,13 +29,15 @@ void handlePaymentErrorResponse(PaymentFailureResponse response) {
 
   void handlePaymentSuccessResponse(PaymentSuccessResponse response) {
     Navigator.push(
-        context, MaterialPageRoute(builder: (builder) => Showmusicticket(index: widget.index,)));
+        context, MaterialPageRoute(builder: (builder) => Showmusicticket()));
     print(response.paymentId);
   }
 
   void handleExternalWalletSelected(PaymentSuccessResponse response) {
     print(response.paymentId);
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -119,11 +121,11 @@ void handlePaymentErrorResponse(PaymentFailureResponse response) {
           Center(child: InkWell(
             onTap: () {
               if(ticket == 0){
-                ticketrate=1999;
+                ticketrate=13999;
               }else if(ticket == 1){
-                ticketrate=2499;
+                ticketrate=6999;
               }else{
-                ticketrate=2999;
+                ticketrate=8999;
               }
                Razorpay razorpay = Razorpay();
                         var options = {

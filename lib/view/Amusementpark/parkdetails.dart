@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:projectapp/controller/metrocontroller.dart';
+import 'package:projectapp/controller/countcontroller.dart';
 import 'package:projectapp/dummydb.dart';
 import 'package:projectapp/view/Amusementpark/showparkticket.dart';
 import 'package:provider/provider.dart';
@@ -274,39 +274,13 @@ class _ParkdetailsState extends State<Parkdetails> {
                 children: [
                 InkWell(
                   onTap: () {
-                    
-                    if(index==0){
-                      context.read<Metrocontroller>().ondecrementpark();
-                    }else if(index==1){
-                      context.read<Metrocontroller>().ondecrementpark1();
-                    }else if(index==2){
-                      context.read<Metrocontroller>().ondecrementpark2();
-                    }else if(index==3){
-                      context.read<Metrocontroller>().ondecrementpark3();
-                    }else if(index==4){
-                      context.read<Metrocontroller>().ondecrementpark4();
-                    }else{
-                      context.read<Metrocontroller>().ondecrementpark5();
-                    }
+                    context.read<Metrocontroller>().selectde(index,);
                   },
                   child: Text("−",style: TextStyle(fontSize: 30),)),
                 Text(_changevalue(index).toString()),
                 InkWell(
                    onTap: () {
-                    if(index==0){
-                      context.read<Metrocontroller>().onincrementpark();
-                    }else if(index==1){
-                      context.read<Metrocontroller>().onincrementpark1();
-                    }else if(index==2){
-                      context.read<Metrocontroller>().onincrementpark2();
-                    }else if(index==3){
-                      context.read<Metrocontroller>().onincrementpark3();
-                    }else if(index==4){
-                      context.read<Metrocontroller>().onincrementpark4();
-                    }else{
-                      context.read<Metrocontroller>().onincrementpark5();
-                    }
-                    
+                    context.read<Metrocontroller>().selectincre(index,);  
                   },
                   child: Icon(Icons.add))
                             ],),

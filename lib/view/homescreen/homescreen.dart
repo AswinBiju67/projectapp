@@ -96,12 +96,20 @@ class _HomescreenState extends State<Homescreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Welcome to BookIt',
-                style: GoogleFonts.montserrat(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.brown),
+              Row(
+                children: [
+                  Text(
+                    'Welcome to BookIt',
+                    style: GoogleFonts.montserrat(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.brown),
+                  ),
+                  SizedBox(width: 5,),
+                  Image.asset(
+                    height: 25,
+                    "assets/images/logo.png")
+                ],
               ),
               SizedBox(
                 height: 15,

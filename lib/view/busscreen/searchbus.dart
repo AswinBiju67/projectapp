@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:projectapp/widgets/busseat.dart';
+import 'package:projectapp/view/busscreen/busseat.dart';
 
 class SearchbusScreen extends StatefulWidget {
   String? date;

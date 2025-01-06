@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
-import 'package:projectapp/controller/selectdatecontroller.dart';
+import 'package:projectapp/controller/selectcontroller.dart';
 import 'package:projectapp/dummydb.dart';
 import 'package:projectapp/view/trainscree/selectseat.dart';
 import 'package:provider/provider.dart';

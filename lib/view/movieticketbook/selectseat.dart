@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projectapp/dummydb.dart';
 import 'package:projectapp/model/constants.dart';
-import 'package:projectapp/widgets/seatselecting.dart';
+import 'package:projectapp/view/movieticketbook/seatselecting.dart';
 
 class Seatselections extends StatefulWidget {
   int? index;
