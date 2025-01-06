@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:projectapp/dummydb.dart';
+import 'package:projectapp/view/Amusementpark/parkdetails.dart';
+import 'package:projectapp/view/Sportsevent/selectsports.dart';
 import 'package:projectapp/view/busscreen/searchbus.dart';
+import 'package:projectapp/view/comdeyshow/selectshow.dart';
+import 'package:projectapp/view/kidsshow/selectkidsshow.dart';
 import 'package:projectapp/view/location.dart';
 import 'package:projectapp/view/metrocreen/metro%20ticket%20booking.dart';
-import 'package:projectapp/view/movieticketbook/selectdate.dart';
+import 'package:projectapp/view/movieticketbook/moviedetails.dart';
+import 'package:projectapp/view/musicshow/Selectshowmusic.dart';
 import 'package:projectapp/view/profilescreen/profilescreen.dart';
 import 'package:projectapp/view/trainscree/seattab.dart';
 
@@ -43,7 +48,7 @@ class _HomescreenState extends State<Homescreen> {
                         ));
                   },
                   child: Text(
-                    widget.location ?? "Kochi",
+                    "Kochi",
                     overflow: TextOverflow.ellipsis,
                     style: GoogleFonts.montserrat(
                       fontSize: 15,
@@ -161,58 +166,7 @@ class _HomescreenState extends State<Homescreen> {
               SizedBox(
                 height: 15,
               ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 15),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
-                            height: 100,
-                            width: 150,
-                            fit: BoxFit.fill,
-                            "assets/images/comedy.png"),
-                            
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 15),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
-                            height: 100,
-                            width: 150,
-                            fit: BoxFit.fill,
-                            "assets/images/kids.png"),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 15),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
-                            height: 100,
-                            width: 150,
-                            fit: BoxFit.fill,
-                           "assets/images/music.png"),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 15),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
-                            height: 100,
-                            width: 150,
-                            fit: BoxFit.cover,
-                            "assets/images/sport-text-banner-poster-design_1308-132744.jpg"),
-                      ),
-                    ),
-                  ]
-                ),
-              ),
+              _eventsection(context),
               SizedBox(
                 height: 15,
               ),
@@ -241,66 +195,166 @@ class _HomescreenState extends State<Homescreen> {
               SizedBox(
                 height: 15,
               ),
-              Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade200,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10)),
-                      child: Image.asset(
-                          height: 150,
-                          width: double.infinity,
-                          fit: BoxFit.cover,
-                          "assets/images/wonder.jpg"),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Wonderla Amusement Park Kochi",
-                            style: GoogleFonts.montserrat(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            "Theme Park",
-                            style: GoogleFonts.montserrat(
-                                fontSize: 15, fontWeight: FontWeight.w500),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "1064 onwards | zero booking fees",
-                            style: GoogleFonts.montserrat(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            "Wonderla Amusement Park Kochi",
-                            style: GoogleFonts.montserrat(
-                                fontSize: 15, fontWeight: FontWeight.w500),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              _Amusmentsection(),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  InkWell _Amusmentsection() {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Parkdetails(),
+            ));
+      },
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: Colors.grey.shade200,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+              child: Image.asset(
+                  height: 150,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                  "assets/images/wonder.jpg"),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Wonderla Amusement Park Kochi",
+                    style: GoogleFonts.montserrat(
+                        fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "Theme Park",
+                    style: GoogleFonts.montserrat(
+                        fontSize: 15, fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "1064 onwards | zero booking fees",
+                    style: GoogleFonts.montserrat(
+                        fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "Wonderla Amusement Park Kochi",
+                    style: GoogleFonts.montserrat(
+                        fontSize: 15, fontWeight: FontWeight.w500),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  SingleChildScrollView _eventsection(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(children: [
+        Padding(
+          padding: const EdgeInsets.only(right: 15),
+          child: InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Selectshow(),
+                  ));
+            },
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(
+                  height: 100,
+                  width: 150,
+                  fit: BoxFit.fill,
+                  "assets/images/comedy.png"),
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(right: 15),
+          child: InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Selectkidsshow(),
+                  ));
+            },
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(
+                  height: 100,
+                  width: 150,
+                  fit: BoxFit.fill,
+                  "assets/images/kids.png"),
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(right: 15),
+          child: InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Selectshowmusic(),
+                  ));
+            },
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(
+                  height: 100,
+                  width: 150,
+                  fit: BoxFit.fill,
+                  "assets/images/music.png"),
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(right: 15),
+          child: InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Selectsports(),
+                  ));
+            },
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(
+                  height: 100,
+                  width: 150,
+                  fit: BoxFit.cover,
+                  "assets/images/sport-text-banner-poster-design_1308-132744.jpg"),
+            ),
+          ),
+        ),
+      ]),
     );
   }
 
@@ -317,8 +371,12 @@ class _HomescreenState extends State<Homescreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: 20.0,left: 15),
-                      child: Text("Select Your Metro Station",style: GoogleFonts.montserrat(fontSize: 15,fontWeight: FontWeight.bold),),
+                      padding: const EdgeInsets.only(top: 20.0, left: 15),
+                      child: Text(
+                        "Select Your Metro Station",
+                        style: GoogleFonts.montserrat(
+                            fontSize: 15, fontWeight: FontWeight.bold),
+                      ),
                     ),
                     Column(
                       children: List.generate(
@@ -341,11 +399,13 @@ class _HomescreenState extends State<Homescreen> {
                                   border: BorderDirectional(
                                       bottom: BorderSide(color: Colors.black))),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Row(
                                     children: [
-                                      Image.asset(height: 35, Dummydb().metro[index]),
+                                      Image.asset(
+                                          height: 35, Dummydb().metro[index]),
                                       SizedBox(
                                         width: 15,
                                       ),
@@ -408,162 +468,167 @@ class _HomescreenState extends State<Homescreen> {
           onTap: () {
             showModalBottomSheet(
                 context: context,
-                builder: (context) => Container(
-                      height: 260,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 10,
-                            ),
-                            SizedBox(
-                              height: 155,
-                              width: double.infinity,
-                              child: Stack(
-                                children: [
-                                  Positioned(
-                                      top: 30,
-                                      right: 50,
-                                      child: CircleAvatar(
-                                        radius: 20,
-                                        backgroundColor: Colors.black,
-                                        child: Icon(
-                                          Icons.swap_vert,
-                                          color: Colors.white,
-                                        ),
-                                      )),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15),
-                                        border:
-                                            Border.all(color: Colors.black)),
-                                    child: Column(
-                                      children: [
-                                        Stack(
+                builder: (context) => Padding(
+                  padding:  EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom ),
+                  child: Container(
+                        height: 260,
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                SizedBox(
+                                  height: 155,
+                                  width: double.infinity,
+                                  child: Stack(
+                                    children: [
+                                      Positioned(
+                                          top: 30,
+                                          right: 50,
+                                          child: CircleAvatar(
+                                            radius: 20,
+                                            backgroundColor: Colors.black,
+                                            child: Icon(
+                                              Icons.swap_vert,
+                                              color: Colors.white,
+                                            ),
+                                          )),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(15),
+                                            border:
+                                                Border.all(color: Colors.black)),
+                                        child: Column(
                                           children: [
-                                            Column(
+                                            Stack(
                                               children: [
-                                                TextField(
-                                                  controller: fromplace,
-                                                  decoration: InputDecoration(
-                                                    hintText: "From",
-                                                    hintStyle:
-                                                        GoogleFonts.montserrat(
-                                                            fontSize: 21),
-                                                    prefixIcon: Icon(
-                                                        Icons.directions_bus),
-                                                  ),
-                                                  onChanged: (value) {
-                                                    // from=value;
-                                                    // setState(() {
-
-                                                    // });
-                                                  },
-                                                ),
-                                                TextField(
-                                                    controller: toplace,
-                                                    decoration: InputDecoration(
-                                                        hintText: "TO",
-                                                        hintStyle: GoogleFonts
-                                                            .montserrat(
+                                                Column(
+                                                  children: [
+                                                    TextField(
+                                                      controller: fromplace,
+                                                      decoration: InputDecoration(
+                                                        hintText: "From",
+                                                        hintStyle:
+                                                            GoogleFonts.montserrat(
                                                                 fontSize: 21),
-                                                        prefixIcon: Icon(Icons
-                                                            .directions_bus)),
-                                                    onChanged: (value) {
-                                                      // to=value;
-                                                      // setState(() {
-
-                                                      // });
-                                                    }),
+                                                        prefixIcon: Icon(
+                                                            Icons.directions_bus),
+                                                      ),
+                                                      onChanged: (value) {
+                                                        // from=value;
+                                                        // setState(() {
+                                              
+                                                        // });
+                                                      },
+                                                    ),
+                                                    TextField(
+                                                        controller: toplace,
+                                                        decoration: InputDecoration(
+                                                            hintText: "TO",
+                                                            hintStyle: GoogleFonts
+                                                                .montserrat(
+                                                                    fontSize: 21),
+                                                            prefixIcon: Icon(Icons
+                                                                .directions_bus)),
+                                                        onChanged: (value) {
+                                                          // to=value;
+                                                          // setState(() {
+                                              
+                                                          // });
+                                                        }),
+                                                  ],
+                                                ),
                                               ],
                                             ),
+                                            TextField(
+                                              controller: datecontroller,
+                                              decoration: InputDecoration(
+                                                labelText: "Sselect Date",
+                                                prefixIcon: InkWell(
+                                                    onTap: () async {
+                                                      final DateTime? picked =
+                                                          await showDatePicker(
+                                                        context: context,
+                                                        initialDate: DateTime.now(),
+                                                        firstDate: DateTime(2025),
+                                                        lastDate: DateTime(2050),
+                                                      );
+                                                      if (picked != null) {
+                                                        setState(() {
+                                                          datecontroller.text =
+                                                              picked
+                                                                  .toString()
+                                                                  .split(' ')[0];
+                                                        });
+                                                      }
+                                                    },
+                                                    child: Icon(Icons
+                                                        .calendar_month_outlined)),
+                                              ),
+                                              readOnly: true,
+                                            )
                                           ],
                                         ),
-                                        TextField(
-                                          controller: datecontroller,
-                                          decoration: InputDecoration(
-                                            labelText: "Sselect Date",
-                                            prefixIcon: InkWell(
-                                                onTap: () async {
-                                                  final DateTime? picked =
-                                                      await showDatePicker(
-                                                    context: context,
-                                                    initialDate: DateTime.now(),
-                                                    firstDate: DateTime(2025),
-                                                    lastDate: DateTime(2050),
-                                                  );
-                                                  if (picked != null) {
-                                                    setState(() {
-                                                      datecontroller.text =
-                                                          picked
-                                                              .toString()
-                                                              .split(' ')[0];
-                                                    });
-                                                  }
-                                                },
-                                                child: Icon(Icons
-                                                    .calendar_month_outlined)),
-                                          ),
-                                          readOnly: true,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    if (fromplace.text.isNotEmpty &&
+                                        toplace.text.isNotEmpty &&
+                                        datecontroller.text.isNotEmpty) {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => Seattab(
+                                              date: datecontroller.text,
+                                              from: fromplace.text,
+                                              to: toplace.text,
+                                            ),
+                                          ));
+                                    }
+                                  },
+                                  child: Container(
+                                    height: 50,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                        color: Colors.blue,
+                                        borderRadius: BorderRadius.circular(25)),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.search,
+                                          color: Colors.white,
+                                          size: 20,
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        Text(
+                                          "Search Trains",
+                                          style: GoogleFonts.montserrat(
+                                              color: Colors.white,
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.bold),
                                         )
                                       ],
                                     ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            InkWell(
-                              onTap: () {
-                                if (fromplace.text.isNotEmpty &&
-                                    toplace.text.isNotEmpty &&
-                                    datecontroller.text.isNotEmpty) {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => Seattab(
-                                          date: datecontroller.text,
-                                          from: fromplace.text,
-                                          to: toplace.text,
-                                        ),
-                                      ));
-                                }
-                              },
-                              child: Container(
-                                height: 50,
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                    color: Colors.blue,
-                                    borderRadius: BorderRadius.circular(25)),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.search,
-                                      color: Colors.white,
-                                      size: 20,
-                                    ),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text(
-                                      "Search Trains",
-                                      style: GoogleFonts.montserrat(
-                                          color: Colors.white,
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.bold),
-                                    )
-                                  ],
+                                  ),
                                 ),
-                              ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
-                    ));
+                ));
           },
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
@@ -594,157 +659,163 @@ class _HomescreenState extends State<Homescreen> {
       onTap: () {
         showModalBottomSheet(
             context: context,
-            builder: (context) => Container(
-                  height: 260,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                          height: 155,
-                          width: double.infinity,
-                          child: Stack(
-                            children: [
-                              Positioned(
-                                  top: 30,
-                                  right: 50,
-                                  child: CircleAvatar(
-                                    radius: 20,
-                                    backgroundColor: Colors.black,
-                                    child: Icon(
-                                      Icons.swap_vert,
-                                      color: Colors.white,
-                                    ),
-                                  )),
-                              Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
-                                    border: Border.all(color: Colors.black)),
-                                child: Column(
-                                  children: [
-                                    Stack(
+            builder: (context) => Padding(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom),
+                  child: Container(
+                    height: 260,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            SizedBox(
+                              height: 155,
+                              width: double.infinity,
+                              child: Stack(
+                                children: [
+                                  Positioned(
+                                      top: 30,
+                                      right: 50,
+                                      child: CircleAvatar(
+                                        radius: 20,
+                                        backgroundColor: Colors.black,
+                                        child: Icon(
+                                          Icons.swap_vert,
+                                          color: Colors.white,
+                                        ),
+                                      )),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        border: Border.all(color: Colors.black)),
+                                    child: Column(
                                       children: [
-                                        Column(
+                                        Stack(
                                           children: [
-                                            TextField(
-                                              controller: fromplace,
-                                              decoration: InputDecoration(
-                                                hintText: "From",
-                                                hintStyle:
-                                                    GoogleFonts.montserrat(
-                                                        fontSize: 21),
-                                                prefixIcon:
-                                                    Icon(Icons.directions_bus),
-                                              ),
-                                              onChanged: (value) {
-                                                // from=value;
-                                                // setState(() {
-
-                                                // });
-                                              },
-                                            ),
-                                            TextField(
-                                                controller: toplace,
-                                                decoration: InputDecoration(
-                                                    hintText: "TO",
+                                            Column(
+                                              children: [
+                                                TextField(
+                                                  controller: fromplace,
+                                                  decoration: InputDecoration(
+                                                    hintText: "From",
                                                     hintStyle:
                                                         GoogleFonts.montserrat(
                                                             fontSize: 21),
-                                                    prefixIcon: Icon(
-                                                        Icons.directions_bus)),
-                                                onChanged: (value) {
-                                                  // to=value;
-                                                  // setState(() {
-
-                                                  // });
-                                                }),
+                                                    prefixIcon:
+                                                        Icon(Icons.directions_bus),
+                                                  ),
+                                                  onChanged: (value) {
+                                                    // from=value;
+                                                    // setState(() {
+                        
+                                                    // });
+                                                  },
+                                                ),
+                                                TextField(
+                                                    controller: toplace,
+                                                    decoration: InputDecoration(
+                                                        hintText: "TO",
+                                                        hintStyle:
+                                                            GoogleFonts.montserrat(
+                                                                fontSize: 21),
+                                                        prefixIcon: Icon(
+                                                            Icons.directions_bus)),
+                                                    onChanged: (value) {
+                                                      // to=value;
+                                                      // setState(() {
+                        
+                                                      // });
+                                                    }),
+                                              ],
+                                            ),
                                           ],
                                         ),
+                                        TextField(
+                                          controller: datecontroller,
+                                          decoration: InputDecoration(
+                                            labelText: "Sselect Date",
+                                            prefixIcon: InkWell(
+                                                onTap: () async {
+                                                  final DateTime? picked =
+                                                      await showDatePicker(
+                                                    context: context,
+                                                    initialDate: DateTime.now(),
+                                                    firstDate: DateTime(2025),
+                                                    lastDate: DateTime(2050),
+                                                  );
+                                                  if (picked != null) {
+                                                    setState(() {
+                                                      datecontroller.text = picked
+                                                          .toString()
+                                                          .split(' ')[0];
+                                                    });
+                                                  }
+                                                },
+                                                child: Icon(
+                                                    Icons.calendar_month_outlined)),
+                                          ),
+                                          readOnly: true,
+                                        )
                                       ],
                                     ),
-                                    TextField(
-                                      controller: datecontroller,
-                                      decoration: InputDecoration(
-                                        labelText: "Sselect Date",
-                                        prefixIcon: InkWell(
-                                            onTap: () async {
-                                              final DateTime? picked =
-                                                  await showDatePicker(
-                                                context: context,
-                                                initialDate: DateTime.now(),
-                                                firstDate: DateTime(2025),
-                                                lastDate: DateTime(2050),
-                                              );
-                                              if (picked != null) {
-                                                setState(() {
-                                                  datecontroller.text = picked
-                                                      .toString()
-                                                      .split(' ')[0];
-                                                });
-                                              }
-                                            },
-                                            child: Icon(
-                                                Icons.calendar_month_outlined)),
-                                      ),
-                                      readOnly: true,
+                                  )
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                if (fromplace.text.isNotEmpty &&
+                                    toplace.text.isNotEmpty &&
+                                    datecontroller.text.isNotEmpty) {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => SearchbusScreen(
+                                          date: datecontroller.text,
+                                          from: fromplace.text,
+                                          to: toplace.text,
+                                        ),
+                                      ));
+                                }
+                              },
+                              child: Container(
+                                height: 50,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                    color: Colors.blue,
+                                    borderRadius: BorderRadius.circular(25)),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.search,
+                                      color: Colors.white,
+                                      size: 20,
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      "Search buses",
+                                      style: GoogleFonts.montserrat(
+                                          color: Colors.white,
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold),
                                     )
                                   ],
                                 ),
-                              )
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            if (fromplace.text.isNotEmpty &&
-                                toplace.text.isNotEmpty &&
-                                datecontroller.text.isNotEmpty) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => SearchbusScreen(
-                                      date: datecontroller.text,
-                                      from: fromplace.text,
-                                      to: toplace.text,
-                                    ),
-                                  ));
-                            }
-                          },
-                          child: Container(
-                            height: 50,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.circular(25)),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.search,
-                                  color: Colors.white,
-                                  size: 20,
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Text(
-                                  "Search buses",
-                                  style: GoogleFonts.montserrat(
-                                      color: Colors.white,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold),
-                                )
-                              ],
+                              ),
                             ),
-                          ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
                   ),
                 ));
@@ -788,7 +859,7 @@ class _HomescreenState extends State<Homescreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Selectdate(
+                          builder: (context) => Moviedetails(
                             index: index,
                           ),
                         ));

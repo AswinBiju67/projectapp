@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:projectapp/view/busscreen/Boradinganddropscreen.dart';
 import 'package:projectapp/view/busscreen/passgenerinfo.dart';
 
 class ChooseSeat extends StatefulWidget {
@@ -202,7 +203,7 @@ class _ChooseSeatState extends State<ChooseSeat> {
             ),
             InkWell(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Passinfo(),));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => BoardingScreen(),));
               },
               child: Text("Book Now",style: GoogleFonts.montserrat(fontWeight: FontWeight.w600,color: Colors.blue,fontSize: 18),)),
           ],

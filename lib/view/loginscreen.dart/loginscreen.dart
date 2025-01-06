@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:projectapp/view/homescreen/homescreen.dart';
+import 'package:projectapp/controller/logincontroller.dart';
 import 'package:projectapp/view/registerscreen.dart/registrationscreen.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
   final GlobalKey<FormState> _loginFormKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,10 +60,11 @@ class LoginScreen extends StatelessWidget {
               SizedBox(height: 20),
               InkWell(
                 onTap: () {
+                  context.read<Logincontroller>().onLogon(email: emailController.text, password: passwordController.text, context: context);
                   if (_loginFormKey.currentState!.validate()) {
                     
                   }
-                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Homescreen()), (route) => false,);
+                 
                 },
                 child: Text('Login',style: GoogleFonts.montserrat(fontSize: 20,fontWeight: FontWeight.w600,color: Colors.blueAccent),),
               ),
@@ -76,7 +78,7 @@ class LoginScreen extends StatelessWidget {
               Text("don't have an account",style: GoogleFonts.montserrat(fontSize: 20,fontWeight: FontWeight.w500),),
               InkWell(
                 onTap: () {
-                   Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => RegistrationScreen(),), (route) => false,);
+                   Navigator.push(context, MaterialPageRoute(builder: (context) => RegistrationScreen(),));
                 }, 
                 child: Text('Create an Account',style: GoogleFonts.montserrat(fontSize: 15,fontWeight: FontWeight.w500,color: Colors.blueAccent,decoration: TextDecoration.underline,decorationColor: Colors.blueAccent),),
               ),

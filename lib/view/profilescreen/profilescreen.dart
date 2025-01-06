@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:projectapp/view/profilescreen/userdetails.dart';
 
 class Profilescreen extends StatelessWidget {
   const Profilescreen({super.key});
@@ -9,6 +11,16 @@ class Profilescreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Hi User!',style: GoogleFonts.montserrat(fontWeight: FontWeight.bold),),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: InkWell(
+              onTap: () async {
+                 await FirebaseAuth.instance.signOut();
+              },
+              child: Icon(Icons.logout_outlined)),
+          )
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -16,17 +28,22 @@ class Profilescreen extends StatelessWidget {
           Row( 
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-               Row(children: [
-                Icon(Icons.person),
-              SizedBox(width: 10,),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("View Your Profile",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,fontSize: 20),),
-                  Text("Edit Your Profile",style: GoogleFonts.montserrat(fontWeight: FontWeight.w500),),
-                ],
-              ),
-              ],),
+               InkWell(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Userdetails()));
+                },
+                 child: Row(children: [
+                  Icon(Icons.person),
+                               SizedBox(width: 10,),
+                               Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("View Your Profile",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,fontSize: 20),),
+                    Text("Edit Your Profile",style: GoogleFonts.montserrat(fontWeight: FontWeight.w500),),
+                  ],
+                               ),
+                               ],),
+               ),
               
              Icon(Icons.arrow_forward_ios),
             ],

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:projectapp/controller/registercontroller.dart';
+import 'package:projectapp/main.dart';
+import 'package:provider/provider.dart';
 
 class RegistrationScreen extends StatelessWidget {
   final GlobalKey<FormState> _registrationFormKey = GlobalKey<FormState>();
@@ -73,6 +76,7 @@ class RegistrationScreen extends StatelessWidget {
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
+                  context.read<Registrationcontroller>().onRegister(email: emailController.text, password: passwordController.text);
                   if (_registrationFormKey.currentState!.validate()) {
                     // Perform registration action
                     ScaffoldMessenger.of(context).showSnackBar(

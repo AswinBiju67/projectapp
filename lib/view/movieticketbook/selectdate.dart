@@ -19,9 +19,12 @@ class _SelectdateState extends State<Selectdate> {
    
   @override
   Widget build(BuildContext context) {
+    List  date=["MON","TUE","WED","THU","FRI"];
    final selectdate= context.watch<Selectdatecontroller>().selectedindex;
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Text(Dummydb().movieName[widget.index!]),
       ),
       body: Column(
@@ -40,11 +43,11 @@ class _SelectdateState extends State<Selectdate> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("THU",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,
+                    Text(date[index],style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,
                     color: selectdate == index ? Colors.white : Colors.black,),),
-                    Text("02",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,
+                    Text(index == 0 ? "${2}" :"${2+index}",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,
                     color: selectdate == index? Colors.white : Colors.black,),),
-                    Text("DEC",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,
+                    Text("Jan",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,
                     color: selectdate == index ? Colors.white : Colors.black,),),
                   ],
                 ),
