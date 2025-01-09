@@ -3,14 +3,19 @@ import 'package:book_my_seat/book_my_seat.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:projectapp/controller/movieorderscontroller.dart';
+import 'package:projectapp/dummydb.dart';
 import 'package:projectapp/model/constants.dart';
 import 'package:projectapp/view/movieticketbook/showtickets.dart';
+import 'package:provider/provider.dart';
 import 'package:razorpay_web/razorpay_web.dart';
 
 class SeatsListings extends StatefulWidget {
   int? index;
+  String? date;
    SeatsListings({super.key,
-   this.index});
+   this.index,
+   this.date});
 
   @override
   State<SeatsListings> createState() => _SeatsListingsState();
@@ -1044,6 +1049,7 @@ class _SeatsListingsState extends State<SeatsListings> {
                   setState(() {
                     isLoading = true;
                   });
+                  
 
                   Razorpay razorpay = Razorpay();
 
@@ -1113,8 +1119,8 @@ class _SeatsListingsState extends State<SeatsListings> {
   }
 
   void handlePaymentSuccessResponse(PaymentSuccessResponse response) {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (builder) => ShowTicket(index: widget.index,)));
+    context.read<Movieorderscontroller>().additem(tittle: Dummydb().movieName[widget.index!], ceniplex: "Aashirvad", image: Dummydb().movie[widget.index!], time: '10:30', date: widget.date.toString().split(' ')[0]);
+    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => ShowTicket(index: widget.index,),), (route) => false,);
     print(response.paymentId);
   }
 

@@ -56,7 +56,11 @@ class _SearchbusScreenState extends State<SearchbusScreen> {
                     padding: const EdgeInsets.all(10),
                     child: InkWell(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ChooseSeat(),));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ChooseSeat(
+                          date: widget.date,
+                          from: widget.from,
+                          to: widget.to,
+                        ),));
                       },
                       child: Container(
                         

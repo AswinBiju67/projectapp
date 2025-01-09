@@ -5,7 +5,8 @@ import 'package:projectapp/view/movieticketbook/seatselecting.dart';
 
 class Seatselections extends StatefulWidget {
   int? index;
-   Seatselections({super.key,this.index});
+  String? date;
+   Seatselections({super.key,this.index,this.date});
 
   @override
   State<Seatselections> createState() => _SeatselectionsState();
@@ -31,7 +32,7 @@ class _SeatselectionsState extends State<Seatselections> {
         ),
       ),
       backgroundColor: Colors.white,
-      body: SeatsListings(index: widget.index,),
+      body: SeatsListings(index: widget.index,date: widget.date,),
     );
   }
 }

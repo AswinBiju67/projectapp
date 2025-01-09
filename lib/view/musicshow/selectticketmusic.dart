@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:projectapp/controller/eventcontroller.dart';
 import 'package:projectapp/controller/selectcontroller.dart';
 import 'package:projectapp/dummydb.dart';
 import 'package:projectapp/view/comdeyshow/comdeyshowwticket.dart';
@@ -28,6 +29,7 @@ void handlePaymentErrorResponse(PaymentFailureResponse response) {
   }
 
   void handlePaymentSuccessResponse(PaymentSuccessResponse response) {
+    context.read<Eventcontroller>().additem(tittle: Dummydb().musicshow[widget.index!], person: 1, image: Dummydb().music[widget.index!], price: 13999, date: Dummydb().musicdate[widget.index!], type: "VIP", event: "Music Show");
     Navigator.push(
         context, MaterialPageRoute(builder: (builder) => Showmusicticket()));
     print(response.paymentId);

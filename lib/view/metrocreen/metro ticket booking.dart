@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:projectapp/controller/countcontroller.dart';
+import 'package:projectapp/controller/ticketcontroller.dart';
 import 'package:projectapp/dummydb.dart';
 import 'package:projectapp/view/metrocreen/ticketmetro.dart';
 import 'package:provider/provider.dart';
@@ -9,7 +11,7 @@ import 'package:razorpay_web/razorpay_web.dart';
 
 class Metrotab extends StatefulWidget {
   int? index;
-   Metrotab({super.key, this.index});
+  Metrotab({super.key, this.index});
 
   @override
   State<Metrotab> createState() => _MetrotabState();
@@ -22,6 +24,7 @@ class _MetrotabState extends State<Metrotab> {
   @override
   Widget build(BuildContext context) {
     int calculatedPrice = 20 * context.watch<Metrocontroller>().count;
+    String now = DateFormat("yyyy-MM-dd ").format(DateTime.now());
     return Scaffold(
       appBar: AppBar(
         title: Text("Metro Tecket Booking",
@@ -49,21 +52,35 @@ class _MetrotabState extends State<Metrotab> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              Dummydb().metroname[widget.index!],
-                              style: GoogleFonts.montserrat(
-                                  fontSize: 21, fontWeight: FontWeight.bold),
+                            Row(
+                              children: [
+                                Text(
+                                  Dummydb().metroname[widget.index!],
+                                  style: GoogleFonts.montserrat(
+                                      fontSize: 21,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(
+                                  width: 90,
+                                ),
+                                Text(
+                                  now,
+                                  style: GoogleFonts.montserrat(
+                                      fontSize: 21,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
                             ),
                             SizedBox(
                               height: 5,
                             ),
-                            Image.asset(height: 60, Dummydb().metro[widget.index!]),
+                            Image.asset(
+                                height: 60, Dummydb().metro[widget.index!]),
                             SizedBox(
                               height: 10,
                             ),
                           ],
                         ),
-                        
                       ],
                     ),
                   ),
@@ -79,29 +96,122 @@ class _MetrotabState extends State<Metrotab> {
                           children: [
                             Column(
                               children: [
-                                TextField(
-                                  controller: fromplace,
-                                  decoration: InputDecoration(
-                                    hintText: "From",
-                                    hintStyle:
-                                        GoogleFonts.montserrat(fontSize: 21),
-                                    prefixIcon: Icon(Icons.directions_train),
-                                  ),
-                                  onChanged: (value) {
-                                    setState(() {});
+                                Autocomplete<String>(
+                                  optionsBuilder:
+                                      (TextEditingValue textEditingValue) {
+                                    if (textEditingValue.text.isEmpty) {
+                                      return const Iterable<String>.empty();
+                                    }
+                                    return [
+                                      "Aluva",
+                                      "Pulinchodu",
+                                      "Companypady",
+                                      "Ambattukavu",
+                                      "Muttom",
+                                      "Kalamassery",
+                                      "Cochin University (CUSAT)",
+                                      "Pathadipalam",
+                                      "Edapally",
+                                      "Changampuzha Park",
+                                      "Palarivattom",
+                                      "J. L. N. Stadium",
+                                      "Kaloor",
+                                      "Town Hall",
+                                      "M. G. Road",
+                                      "Maharaja's College",
+                                      "Ernakulam South",
+                                      "Kadavanthra",
+                                      "Elamkulam",
+                                      "Vyttila",
+                                      "Thaikoodam",
+                                      "Petta",
+                                      "Vadakkekotta",
+                                      "SN Junction",
+                                      "Tripunithura Terminal"
+                                    ].where((place) => place
+                                        .toLowerCase()
+                                        .contains(textEditingValue.text
+                                            .toLowerCase()));
                                   },
-                                ),
-                                TextField(
-                                    controller: toplace,
-                                    decoration: InputDecoration(
-                                        hintText: "TO",
+                                  onSelected: (String selection) {
+                                    fromplace.text = selection;
+                                  },
+                                  fieldViewBuilder: (context,
+                                      textEditingController,
+                                      focusNode,
+                                      onFieldSubmitted) {
+                                    fromplace = textEditingController;
+                                    return TextField(
+                                      controller: textEditingController,
+                                      focusNode: focusNode,
+                                      decoration: InputDecoration(
+                                        hintText: "From",
                                         hintStyle: GoogleFonts.montserrat(
                                             fontSize: 21),
                                         prefixIcon:
-                                            Icon(Icons.directions_train)),
-                                    onChanged: (value) {
-                                      setState(() {});
-                                    }),
+                                            Icon(Icons.directions_train),
+                                      ),
+                                    );
+                                  },
+                                ),
+                                Autocomplete<String>(
+                                  optionsBuilder:
+                                      (TextEditingValue textEditingValue) {
+                                    if (textEditingValue.text.isEmpty) {
+                                      return const Iterable<String>.empty();
+                                    }
+                                    return [
+                                      "Aluva",
+                                      "Pulinchodu",
+                                      "Companypady",
+                                      "Ambattukavu",
+                                      "Muttom",
+                                      "Kalamassery",
+                                      "Cochin University (CUSAT)",
+                                      "Pathadipalam",
+                                      "Edapally",
+                                      "Changampuzha Park",
+                                      "Palarivattom",
+                                      "J. L. N. Stadium",
+                                      "Kaloor",
+                                      "Town Hall",
+                                      "M. G. Road",
+                                      "Maharaja's College",
+                                      "Ernakulam South",
+                                      "Kadavanthra",
+                                      "Elamkulam",
+                                      "Vyttila",
+                                      "Thaikoodam",
+                                      "Petta",
+                                      "Vadakkekotta",
+                                      "SN Junction",
+                                      "Tripunithura Terminal"
+                                    ].where((place) => place
+                                        .toLowerCase()
+                                        .contains(textEditingValue.text
+                                            .toLowerCase()));
+                                  },
+                                  onSelected: (String selection) {
+                                    toplace.text = selection;
+                                  },
+                                  fieldViewBuilder: (context,
+                                      textEditingController,
+                                      focusNode,
+                                      onFieldSubmitted) {
+                                    toplace = textEditingController;
+                                    return TextField(
+                                      controller: textEditingController,
+                                      focusNode: focusNode,
+                                      decoration: InputDecoration(
+                                        hintText: "To",
+                                        hintStyle: GoogleFonts.montserrat(
+                                            fontSize: 21),
+                                        prefixIcon:
+                                            Icon(Icons.directions_train),
+                                      ),
+                                    );
+                                  },
+                                ),
                               ],
                             ),
                           ],
@@ -265,6 +375,7 @@ class _MetrotabState extends State<Metrotab> {
                     ),
                     InkWell(
                       onTap: () {
+                        context.read<Ticketcontroller>().metro(calculatedPrice);
                         Razorpay razorpay = Razorpay();
                         var options = {
                           'key': 'rzp_test_1DP5mmOlF5G5ag',
@@ -340,14 +451,18 @@ class _MetrotabState extends State<Metrotab> {
   }
 
   void handlePaymentSuccessResponse(PaymentSuccessResponse response) {
+    context.read<Ticketcontroller>().additem(vech: "Metro Ticket", vechtype: "Kochi Metro", from: fromplace.text, to: toplace.text, price: 40, date: DateFormat("yyyy-MM-dd ").format(DateTime.now()), pass: 2);
     Navigator.push(
-        context, MaterialPageRoute(builder: (builder) => Ticketmetro()));
+        context,
+        MaterialPageRoute(
+            builder: (builder) => Ticketmetro(
+                  from: fromplace.text,
+                  to: toplace.text,
+                )));
     print(response.paymentId);
   }
 
   void handleExternalWalletSelected(PaymentSuccessResponse response) {
     print(response.paymentId);
   }
-
-
 }

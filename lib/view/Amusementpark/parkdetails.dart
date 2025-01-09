@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:projectapp/controller/amusementcontroller.dart';
 import 'package:projectapp/controller/countcontroller.dart';
 import 'package:projectapp/dummydb.dart';
 import 'package:projectapp/view/Amusementpark/showparkticket.dart';
@@ -59,6 +60,7 @@ class _ParkdetailsState extends State<Parkdetails> {
     int t5=parkcount4*1816;
     int t6=parkcount5*2270;
     int ticketrate=t1+t2+t3+t4+t5+t6;
+    int person;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -296,6 +298,7 @@ class _ParkdetailsState extends State<Parkdetails> {
                 
                 onTap: () {
                   if(datecontroller.text.isNotEmpty && ticketrate != 0){
+                    
                     Razorpay razorpay = Razorpay();
                         var options = {
                           'key': 'rzp_test_1DP5mmOlF5G5ag',
@@ -349,6 +352,7 @@ class _ParkdetailsState extends State<Parkdetails> {
   }
 
   void handlePaymentSuccessResponse(PaymentSuccessResponse response) {
+    context.read<Amusementcontroller>().additem(tittle: "WonderLa Kochi", person: "2", image: "assets/images/wonder.jpg", price: 2010, date: datecontroller.text);
     Navigator.push(
         context, MaterialPageRoute(builder: (builder) => Showparkticket()));
     print(response.paymentId);

@@ -4,7 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:projectapp/view/busscreen/passgenerinfo.dart';
 
 class DroppingPoint extends StatelessWidget {
-  const DroppingPoint({super.key});
+  String? date;
+  String? from;
+  String? to;
+   DroppingPoint({super.key,
+   this.date,this.from,this.to});
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +112,11 @@ class DroppingPoint extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Passinfo(),));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Passinfo(
+                  date: date,
+                  from: from,
+                  to: to,
+                ),));
               },
               child: Container(
                 width: double.infinity,

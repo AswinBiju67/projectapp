@@ -1,3 +1,4 @@
+import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:projectapp/controller/selectcontroller.dart';
@@ -19,8 +20,7 @@ class _SelectdateState extends State<Selectdate> {
    
   @override
   Widget build(BuildContext context) {
-    List  date=["MON","TUE","WED","THU","FRI"];
-   final selectdate= context.watch<Selectdatecontroller>().selectedindex;
+   DateTime selectdate=DateTime.now();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -29,31 +29,26 @@ class _SelectdateState extends State<Selectdate> {
       ),
       body: Column(
         children: [
-          Row(children: List.generate(5, (index) => InkWell(
-            onTap: () {
-             context.read<Selectdatecontroller>().selectdate(index);
-             
-            },
-            child: Container(
-              height: 100,
-              width: 60,
-              color: selectdate == index ? Colors.blue : Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(date[index],style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,
-                    color: selectdate == index ? Colors.white : Colors.black,),),
-                    Text(index == 0 ? "${2}" :"${2+index}",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,
-                    color: selectdate == index? Colors.white : Colors.black,),),
-                    Text("Jan",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,
-                    color: selectdate == index ? Colors.white : Colors.black,),),
-                  ],
-                ),
+          DatePicker(
+            DateTime.now(),
+            height: 100,
+            width: 80,
+            initialSelectedDate: DateTime.now(),
+            selectedTextColor: Colors.white,
+            selectionColor: Colors.blue,
+            dateTextStyle: GoogleFonts.montserrat(),
+            dayTextStyle: GoogleFonts.montserrat(
+              textStyle: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: Colors.grey
               ),
             ),
-          ),),),
+            monthTextStyle: GoogleFonts.montserrat(),
+            onDateChange: (selectedDate) {
+              selectdate=selectedDate;
+            },
+          ),
           SizedBox(height: 20,),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -80,7 +75,7 @@ class _SelectdateState extends State<Selectdate> {
                     SizedBox(height: 10,),
                     InkWell(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Seatselections(index: widget.index!,)));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Seatselections(index: widget.index!,date: selectdate.toString(),)));
                       },
                       child: Row(children: List.generate(3, (index) => Padding(
                         padding: const EdgeInsets.only(right: 10),

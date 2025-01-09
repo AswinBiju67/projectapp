@@ -90,7 +90,7 @@ class _SeattabState extends State<Seattab> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text("09:20 AM",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,fontSize: 17),),
-                            Text("Pune Jn(PUNE)")
+                            Text("${widget.from!}")
                           ],
                         ),
                         Text("03h 15m"),
@@ -98,7 +98,7 @@ class _SeattabState extends State<Seattab> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text("12:35 PM",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,fontSize: 17),),
-                            Text("C Shivaji Ma...(CSMT)")
+                            Text("${widget.to!}")
                           ],
                         ),
                       ],
@@ -163,7 +163,7 @@ class _SeattabState extends State<Seattab> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text("07:55 AM",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,fontSize: 17),),
-                            Text("Pune Jn(PUNE)")
+                            Text("${widget.from!}")
                           ],
                         ),
                         Text("03h 20m"),
@@ -171,7 +171,7 @@ class _SeattabState extends State<Seattab> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text("11:15 PM",style: GoogleFonts.montserrat(fontWeight: FontWeight.bold,fontSize: 17),),
-                            Text("Lokmanyatilak (LTT)")
+                            Text("${widget.to!}")
                           ],
                         ),
                       ],

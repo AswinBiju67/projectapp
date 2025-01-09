@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:projectapp/controller/countcontroller.dart';
+import 'package:projectapp/controller/ticketcontroller.dart';
 import 'package:projectapp/view/homescreen/homescreen.dart';
+import 'package:provider/provider.dart';
 import 'package:ticket_widget/ticket_widget.dart';
 
 
 class Ticketmetro extends StatelessWidget {
-  const Ticketmetro({Key? key}) : super(key: key);
+  final String? from;
+  final String? to;
+  final int? persons;
+  const Ticketmetro({Key? key,this.from,this.to,this.persons}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +27,7 @@ class Ticketmetro extends StatelessWidget {
               height: 500,
               isCornerRounded: true,
               padding: EdgeInsets.all(20),
-              child: TicketData(),
+              child: TicketData(from: from,to: to,),
             ),
             SizedBox(height: 20),
             InkWell(
@@ -46,12 +53,20 @@ class Ticketmetro extends StatelessWidget {
 }
 
 class TicketData extends StatelessWidget {
+  final int? index;
+  final String? from;
+  final String? to;
+  
   const TicketData({
     Key? key,
+    this.index,
+    this.from,
+    this.to
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    String now = DateFormat("yyyy-MM-dd ").format(DateTime.now());
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -65,7 +80,7 @@ class TicketData extends StatelessWidget {
                 borderRadius: BorderRadius.circular(30.0),
                 border: Border.all(width: 1.0, color: Colors.green),
               ),
-              child: const Center(
+              child:  Center(
                 child: Text(
                   'Kochi Metro',
                   style: TextStyle(color: Colors.green),
@@ -75,7 +90,7 @@ class TicketData extends StatelessWidget {
             Column(
               children: [
                 Text(
-                  'Changampuzha Park',
+                  '${from}',
                   style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                 ),
                 Padding(
@@ -88,7 +103,7 @@ class TicketData extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 8.0),
                   child: Text(
-                    'Aluva',
+                    '${to}',
                     style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -108,10 +123,12 @@ class TicketData extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ticketDetailsWidget('Type', 'SJT', 'Date', '28-08-2022'),
+              ticketDetailsWidget('Passengers', context.watch<Metrocontroller>().count.toString(),
+               'Date', now.toString()),
               Padding(
                 padding: const EdgeInsets.only(top: 12.0, right: 52.0),
-                child: ticketDetailsWidget('Ticket No', '6415.10.113.146', 'Price', '20'),
+                child: ticketDetailsWidget('Ticket No', '6415.10.113.146', 
+                'Price', context.watch<Ticketcontroller>().metrorate.toString()),
               ),
               
             ],

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:projectapp/controller/countcontroller.dart';
+import 'package:projectapp/controller/eventcontroller.dart';
 import 'package:projectapp/controller/selectcontroller.dart';
+import 'package:projectapp/controller/ticketcontroller.dart';
 import 'package:projectapp/dummydb.dart';
 import 'package:projectapp/view/comdeyshow/comdeyshowwticket.dart';
 import 'package:projectapp/view/kidsshow/showkidsticket.dart';
@@ -17,18 +19,13 @@ class Kidsticketselect extends StatefulWidget {
 }
 
 class _BookshowState extends State<Kidsticketselect> {
-List seat=["GOLD",
-"PLATINUM",
-"DAIMOND"];
 
-List rate=["1999",
-"2499",
-"2999"];
 void handlePaymentErrorResponse(PaymentFailureResponse response) {
     print(response.code);
   }
 
   void handlePaymentSuccessResponse(PaymentSuccessResponse response) {
+    context.read<Eventcontroller>().additem(tittle: Dummydb().kidsshow[widget.index!], person: 1, image: Dummydb().kids[widget.index!], price: 500, date: Dummydb().kidsdate[widget.index!], type: "NA", event: "Kids Show");
     Navigator.push(
         context, MaterialPageRoute(builder: (builder) => Showkidsticket(index: widget.index,)));
     print(response.paymentId);
@@ -113,6 +110,7 @@ void handlePaymentErrorResponse(PaymentFailureResponse response) {
           SizedBox(height: 10,),
           Center(child: InkWell(
             onTap: () {
+              context.read<Ticketcontroller>().kidsshow(ticketrate,ticket);
                Razorpay razorpay = Razorpay();
                         var options = {
                           'key': 'rzp_test_1DP5mmOlF5G5ag',

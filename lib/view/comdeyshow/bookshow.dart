@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:projectapp/controller/eventcontroller.dart';
 import 'package:projectapp/controller/selectcontroller.dart';
+import 'package:projectapp/controller/ticketcontroller.dart';
 import 'package:projectapp/dummydb.dart';
 import 'package:projectapp/view/comdeyshow/comdeyshowwticket.dart';
 import 'package:provider/provider.dart';
@@ -15,9 +17,7 @@ class Bookshow extends StatefulWidget {
 }
 
 class _BookshowState extends State<Bookshow> {
-List seat=["GOLD",
-"PLATINUM",
-"DAIMOND"];
+int seat=0;
 
 List rate=["1999",
 "2499",
@@ -27,6 +27,7 @@ void handlePaymentErrorResponse(PaymentFailureResponse response) {
   }
 
   void handlePaymentSuccessResponse(PaymentSuccessResponse response) {
+    context.read<Eventcontroller>().additem(tittle: Dummydb().comdeyname[widget.index!], person: 1, image: Dummydb().comdey[widget.index!], price: 2999, date: Dummydb().comdeydate[widget.index!], type: "Daimond", event: "Comdey Show");
     Navigator.push(
         context, MaterialPageRoute(builder: (builder) => Comdeyshowwticket(index: widget.index,)));
     print(response.paymentId);
@@ -85,6 +86,7 @@ void handlePaymentErrorResponse(PaymentFailureResponse response) {
               onTap: () {
                 context.read<Selectdatecontroller>().selectshowticket(index);
                 index=ticket!;
+                
               },
               child: Container(
                 width: 100,
@@ -98,7 +100,7 @@ void handlePaymentErrorResponse(PaymentFailureResponse response) {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(seat[index],style: GoogleFonts.montserrat(
+                      Text(Dummydb().seat[index],style: GoogleFonts.montserrat(
                         fontWeight: FontWeight.w700,
                         color: ticket == index ?Colors.white : Colors.black
                       ),),
@@ -124,6 +126,8 @@ void handlePaymentErrorResponse(PaymentFailureResponse response) {
               }else{
                 ticketrate=2999;
               }
+              
+              context.read<Ticketcontroller>().comedyshow(ticketrate,seat);
                Razorpay razorpay = Razorpay();
                         var options = {
                           'key': 'rzp_test_1DP5mmOlF5G5ag',

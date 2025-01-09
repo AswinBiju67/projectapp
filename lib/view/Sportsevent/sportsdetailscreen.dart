@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:projectapp/controller/countcontroller.dart';
+import 'package:projectapp/controller/eventcontroller.dart';
 import 'package:projectapp/controller/selectcontroller.dart';
+import 'package:projectapp/controller/ticketcontroller.dart';
 import 'package:projectapp/dummydb.dart';
 import 'package:projectapp/view/Sportsevent/showticketsports.dart';
 import 'package:projectapp/view/musicshow/showmusicticket.dart';
@@ -29,6 +31,7 @@ void handlePaymentErrorResponse(PaymentFailureResponse response) {
   }
 
   void handlePaymentSuccessResponse(PaymentSuccessResponse response) {
+    context.read<Eventcontroller>().additem(tittle: Dummydb().sportsname[widget.index!], person: 1, image: Dummydb().sports[widget.index!], price: 200, date: Dummydb().sportdate[widget.index!], type: "Blue", event: "Sports Event");
     Navigator.push(
         context, MaterialPageRoute(builder: (builder) => Showticketsports(index: widget.index,)));
     print(response.paymentId);
@@ -158,6 +161,7 @@ void handlePaymentErrorResponse(PaymentFailureResponse response) {
              }else{
               ticketrate=2000;
              }
+             context.read<Ticketcontroller>().sports(ticketrate, person);
                Razorpay razorpay = Razorpay();
                         var options = {
                           'key': 'rzp_test_1DP5mmOlF5G5ag',

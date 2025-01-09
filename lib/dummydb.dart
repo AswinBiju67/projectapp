@@ -134,4 +134,8 @@ class Dummydb {
     "https://www.youtube.com/watch?v=tQ_VDT2eNWk",
     "https://www.youtube.com/watch?v=z_Mo697_bdI"
   ];
+
+  List seat=["GOLD",
+"PLATINUM",
+"DAIMOND"];
 }

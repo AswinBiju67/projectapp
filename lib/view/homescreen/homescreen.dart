@@ -66,10 +66,7 @@ class _HomescreenState extends State<Homescreen> {
           ],
         ),
         actions: [
-          Icon(
-            Icons.search_outlined,
-            size: 30,
-          ),
+          
           Padding(
             padding: const EdgeInsets.only(right: 15, left: 15),
             child: InkWell(
@@ -105,10 +102,10 @@ class _HomescreenState extends State<Homescreen> {
                         fontWeight: FontWeight.w500,
                         color: Colors.brown),
                   ),
-                  SizedBox(width: 5,),
-                  Image.asset(
-                    height: 25,
-                    "assets/images/logo.png")
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Image.asset(height: 25, "assets/images/logo.png")
                 ],
               ),
               SizedBox(
@@ -186,13 +183,7 @@ class _HomescreenState extends State<Homescreen> {
                     style: GoogleFonts.montserrat(
                         fontSize: 18, fontWeight: FontWeight.w600),
                   ),
-                  Text(
-                    "See All",
-                    style: GoogleFonts.montserrat(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.blueAccent),
-                  ),
+                  
                 ],
               ),
               Text(
@@ -475,168 +466,223 @@ class _HomescreenState extends State<Homescreen> {
         InkWell(
           onTap: () {
             showModalBottomSheet(
-                context: context,
-                builder: (context) => Padding(
-                  padding:  EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom ),
-                  child: Container(
-                        height: 260,
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: SingleChildScrollView(
-                            child: Column(
+              context: context,
+              builder: (context) => Padding(
+                padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom,
+                ),
+                child: Container(
+                  height: 300,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          SizedBox(height: 10),
+                          SizedBox(
+                            height: 200,
+                            width: double.infinity,
+                            child: Stack(
                               children: [
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                SizedBox(
-                                  height: 155,
-                                  width: double.infinity,
-                                  child: Stack(
-                                    children: [
-                                      Positioned(
-                                          top: 30,
-                                          right: 50,
-                                          child: CircleAvatar(
-                                            radius: 20,
-                                            backgroundColor: Colors.black,
-                                            child: Icon(
-                                              Icons.swap_vert,
-                                              color: Colors.white,
-                                            ),
-                                          )),
-                                      Container(
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(15),
-                                            border:
-                                                Border.all(color: Colors.black)),
-                                        child: Column(
-                                          children: [
-                                            Stack(
-                                              children: [
-                                                Column(
-                                                  children: [
-                                                    TextField(
-                                                      controller: fromplace,
-                                                      decoration: InputDecoration(
-                                                        hintText: "From",
-                                                        hintStyle:
-                                                            GoogleFonts.montserrat(
-                                                                fontSize: 21),
-                                                        prefixIcon: Icon(
-                                                            Icons.directions_bus),
-                                                      ),
-                                                      onChanged: (value) {
-                                                        // from=value;
-                                                        // setState(() {
-                                              
-                                                        // });
-                                                      },
-                                                    ),
-                                                    TextField(
-                                                        controller: toplace,
-                                                        decoration: InputDecoration(
-                                                            hintText: "TO",
-                                                            hintStyle: GoogleFonts
-                                                                .montserrat(
-                                                                    fontSize: 21),
-                                                            prefixIcon: Icon(Icons
-                                                                .directions_bus)),
-                                                        onChanged: (value) {
-                                                          // to=value;
-                                                          // setState(() {
-                                              
-                                                          // });
-                                                        }),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                            TextField(
-                                              controller: datecontroller,
-                                              decoration: InputDecoration(
-                                                labelText: "Sselect Date",
-                                                prefixIcon: InkWell(
-                                                    onTap: () async {
-                                                      final DateTime? picked =
-                                                          await showDatePicker(
-                                                        context: context,
-                                                        initialDate: DateTime.now(),
-                                                        firstDate: DateTime(2025),
-                                                        lastDate: DateTime(2050),
-                                                      );
-                                                      if (picked != null) {
-                                                        setState(() {
-                                                          datecontroller.text =
-                                                              picked
-                                                                  .toString()
-                                                                  .split(' ')[0];
-                                                        });
-                                                      }
-                                                    },
-                                                    child: Icon(Icons
-                                                        .calendar_month_outlined)),
-                                              ),
-                                              readOnly: true,
-                                            )
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    if (fromplace.text.isNotEmpty &&
-                                        toplace.text.isNotEmpty &&
-                                        datecontroller.text.isNotEmpty) {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => Seattab(
-                                              date: datecontroller.text,
-                                              from: fromplace.text,
-                                              to: toplace.text,
-                                            ),
-                                          ));
-                                    }
-                                  },
-                                  child: Container(
-                                    height: 50,
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                        color: Colors.blue,
-                                        borderRadius: BorderRadius.circular(25)),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.search,
-                                          color: Colors.white,
-                                          size: 20,
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text(
-                                          "Search Trains",
-                                          style: GoogleFonts.montserrat(
-                                              color: Colors.white,
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.bold),
-                                        )
-                                      ],
+                                Positioned(
+                                  top: 30,
+                                  right: 50,
+                                  child: CircleAvatar(
+                                    radius: 20,
+                                    backgroundColor: Colors.black,
+                                    child: Icon(
+                                      Icons.swap_vert,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    border: Border.all(color: Colors.black),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Stack(
+                                        children: [
+                                          Column(
+                                            children: [
+                                              // Autocomplete for "From" TextField
+                                              Autocomplete<String>(
+                                                optionsBuilder:
+                                                    (TextEditingValue
+                                                        textEditingValue) {
+                                                  if (textEditingValue
+                                                      .text.isEmpty) {
+                                                    return const Iterable<
+                                                        String>.empty();
+                                                  }
+                                                  return [
+                                                    'Pune',
+                                                    'Benguluru',
+                                                    'Kochi'
+                                                  ].where((place) => place
+                                                      .toLowerCase()
+                                                      .contains(textEditingValue
+                                                          .text
+                                                          .toLowerCase()));
+                                                },
+                                                onSelected: (String selection) {
+                                                  fromplace.text = selection;
+                                                },
+                                                fieldViewBuilder: (context,
+                                                    textEditingController,
+                                                    focusNode,
+                                                    onFieldSubmitted) {
+                                                  fromplace =
+                                                      textEditingController;
+                                                  return TextField(
+                                                    controller:
+                                                        textEditingController,
+                                                    focusNode: focusNode,
+                                                    decoration: InputDecoration(
+                                                      hintText: "From",
+                                                      hintStyle: GoogleFonts
+                                                          .montserrat(
+                                                              fontSize: 21),
+                                                      prefixIcon: Icon(
+                                                          Icons.directions_bus),
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                              // Autocomplete for "To" TextField
+                                              Autocomplete<String>(
+                                                optionsBuilder:
+                                                    (TextEditingValue
+                                                        textEditingValue) {
+                                                  if (textEditingValue
+                                                      .text.isEmpty) {
+                                                    return const Iterable<
+                                                        String>.empty();
+                                                  }
+                                                  return [
+                                                    'Pune',
+                                                    'Benguluru',
+                                                    'Kochi'
+                                                  ].where((place) => place
+                                                      .toLowerCase()
+                                                      .contains(textEditingValue
+                                                          .text
+                                                          .toLowerCase()));
+                                                },
+                                                onSelected: (String selection) {
+                                                  toplace.text = selection;
+                                                },
+                                                fieldViewBuilder: (context,
+                                                    textEditingController,
+                                                    focusNode,
+                                                    onFieldSubmitted) {
+                                                  toplace =
+                                                      textEditingController;
+                                                  return TextField(
+                                                    controller:
+                                                        textEditingController,
+                                                    focusNode: focusNode,
+                                                    decoration: InputDecoration(
+                                                      hintText: "To",
+                                                      hintStyle: GoogleFonts
+                                                          .montserrat(
+                                                              fontSize: 21),
+                                                      prefixIcon: Icon(
+                                                          Icons.directions_bus),
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      TextField(
+                                        controller: datecontroller,
+                                        decoration: InputDecoration(
+                                          labelText: "Select Date",
+                                          prefixIcon: InkWell(
+                                            onTap: () async {
+                                              final DateTime? picked =
+                                                  await showDatePicker(
+                                                context: context,
+                                                initialDate: DateTime.now(),
+                                                firstDate: DateTime(2025),
+                                                lastDate: DateTime(2050),
+                                              );
+                                              if (picked != null) {
+                                                datecontroller.text = picked
+                                                    .toString()
+                                                    .split(' ')[0];
+                                              }
+                                            },
+                                            child: Icon(
+                                                Icons.calendar_month_outlined),
+                                          ),
+                                        ),
+                                        readOnly: true,
+                                      )
+                                    ],
+                                  ),
+                                )
                               ],
                             ),
                           ),
-                        ),
+                          SizedBox(height: 10),
+                          InkWell(
+                            onTap: () {
+                              if (fromplace.text.isNotEmpty &&
+                                  toplace.text.isNotEmpty &&
+                                  datecontroller.text.isNotEmpty) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Seattab(
+                                      date: datecontroller.text,
+                                      from: fromplace.text,
+                                      to: toplace.text,
+                                    ),
+                                  ),
+                                );
+                              }
+                            },
+                            child: Container(
+                              height: 50,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.search,
+                                    color: Colors.white,
+                                    size: 20,
+                                  ),
+                                  SizedBox(width: 5),
+                                  Text(
+                                    "Search Train",
+                                    style: GoogleFonts.montserrat(
+                                      color: Colors.white,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                ));
+                    ),
+                  ),
+                ),
+              ),
+            );
           },
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
@@ -666,167 +712,220 @@ class _HomescreenState extends State<Homescreen> {
     return InkWell(
       onTap: () {
         showModalBottomSheet(
-            context: context,
-            builder: (context) => Padding(
-                  padding: EdgeInsets.only(
-                      bottom: MediaQuery.of(context).viewInsets.bottom),
-                  child: Container(
-                    height: 260,
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: SingleChildScrollView(
-                        child: Column(
+          context: context,
+          builder: (context) => Padding(
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+            ),
+            child: Container(
+              height: 300,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 10),
+                      SizedBox(
+                        height: 200,
+                        width: double.infinity,
+                        child: Stack(
                           children: [
-                            SizedBox(
-                              height: 10,
-                            ),
-                            SizedBox(
-                              height: 155,
-                              width: double.infinity,
-                              child: Stack(
-                                children: [
-                                  Positioned(
-                                      top: 30,
-                                      right: 50,
-                                      child: CircleAvatar(
-                                        radius: 20,
-                                        backgroundColor: Colors.black,
-                                        child: Icon(
-                                          Icons.swap_vert,
-                                          color: Colors.white,
-                                        ),
-                                      )),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15),
-                                        border: Border.all(color: Colors.black)),
-                                    child: Column(
-                                      children: [
-                                        Stack(
-                                          children: [
-                                            Column(
-                                              children: [
-                                                TextField(
-                                                  controller: fromplace,
-                                                  decoration: InputDecoration(
-                                                    hintText: "From",
-                                                    hintStyle:
-                                                        GoogleFonts.montserrat(
-                                                            fontSize: 21),
-                                                    prefixIcon:
-                                                        Icon(Icons.directions_bus),
-                                                  ),
-                                                  onChanged: (value) {
-                                                    // from=value;
-                                                    // setState(() {
-                        
-                                                    // });
-                                                  },
-                                                ),
-                                                TextField(
-                                                    controller: toplace,
-                                                    decoration: InputDecoration(
-                                                        hintText: "TO",
-                                                        hintStyle:
-                                                            GoogleFonts.montserrat(
-                                                                fontSize: 21),
-                                                        prefixIcon: Icon(
-                                                            Icons.directions_bus)),
-                                                    onChanged: (value) {
-                                                      // to=value;
-                                                      // setState(() {
-                        
-                                                      // });
-                                                    }),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                        TextField(
-                                          controller: datecontroller,
-                                          decoration: InputDecoration(
-                                            labelText: "Sselect Date",
-                                            prefixIcon: InkWell(
-                                                onTap: () async {
-                                                  final DateTime? picked =
-                                                      await showDatePicker(
-                                                    context: context,
-                                                    initialDate: DateTime.now(),
-                                                    firstDate: DateTime(2025),
-                                                    lastDate: DateTime(2050),
-                                                  );
-                                                  if (picked != null) {
-                                                    setState(() {
-                                                      datecontroller.text = picked
-                                                          .toString()
-                                                          .split(' ')[0];
-                                                    });
-                                                  }
-                                                },
-                                                child: Icon(
-                                                    Icons.calendar_month_outlined)),
-                                          ),
-                                          readOnly: true,
-                                        )
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            InkWell(
-                              onTap: () {
-                                if (fromplace.text.isNotEmpty &&
-                                    toplace.text.isNotEmpty &&
-                                    datecontroller.text.isNotEmpty) {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => SearchbusScreen(
-                                          date: datecontroller.text,
-                                          from: fromplace.text,
-                                          to: toplace.text,
-                                        ),
-                                      ));
-                                }
-                              },
-                              child: Container(
-                                height: 50,
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                    color: Colors.blue,
-                                    borderRadius: BorderRadius.circular(25)),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.search,
-                                      color: Colors.white,
-                                      size: 20,
-                                    ),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text(
-                                      "Search buses",
-                                      style: GoogleFonts.montserrat(
-                                          color: Colors.white,
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.bold),
-                                    )
-                                  ],
+                            Positioned(
+                              top: 30,
+                              right: 50,
+                              child: CircleAvatar(
+                                radius: 20,
+                                backgroundColor: Colors.black,
+                                child: Icon(
+                                  Icons.swap_vert,
+                                  color: Colors.white,
                                 ),
                               ),
                             ),
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                border: Border.all(color: Colors.black),
+                              ),
+                              child: Column(
+                                children: [
+                                  Stack(
+                                    children: [
+                                      Column(
+                                        children: [
+                                          // Autocomplete for "From" TextField
+                                          Autocomplete<String>(
+                                            optionsBuilder: (TextEditingValue
+                                                textEditingValue) {
+                                              if (textEditingValue
+                                                  .text.isEmpty) {
+                                                return const Iterable<
+                                                    String>.empty();
+                                              }
+                                              return [
+                                                'Thodupuzha',
+                                                'muvattupuzha',
+                                                'Benguluru',
+                                                'Kochi'
+                                              ].where((place) => place
+                                                  .toLowerCase()
+                                                  .contains(textEditingValue
+                                                      .text
+                                                      .toLowerCase()));
+                                            },
+                                            onSelected: (String selection) {
+                                              fromplace.text = selection;
+                                            },
+                                            fieldViewBuilder: (context,
+                                                textEditingController,
+                                                focusNode,
+                                                onFieldSubmitted) {
+                                              fromplace = textEditingController;
+                                              return TextField(
+                                                controller:
+                                                    textEditingController,
+                                                focusNode: focusNode,
+                                                decoration: InputDecoration(
+                                                  hintText: "From",
+                                                  hintStyle:
+                                                      GoogleFonts.montserrat(
+                                                          fontSize: 21),
+                                                  prefixIcon: Icon(
+                                                      Icons.directions_bus),
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                          // Autocomplete for "To" TextField
+                                          Autocomplete<String>(
+                                            optionsBuilder: (TextEditingValue
+                                                textEditingValue) {
+                                              if (textEditingValue
+                                                  .text.isEmpty) {
+                                                return const Iterable<
+                                                    String>.empty();
+                                              }
+                                              return [
+                                                'Thodupuzha',
+                                                'muvattupuzha',
+                                                'Benguluru',
+                                                'Kochi'
+                                              ].where((place) => place
+                                                  .toLowerCase()
+                                                  .contains(textEditingValue
+                                                      .text
+                                                      .toLowerCase()));
+                                            },
+                                            onSelected: (String selection) {
+                                              toplace.text = selection;
+                                            },
+                                            fieldViewBuilder: (context,
+                                                textEditingController,
+                                                focusNode,
+                                                onFieldSubmitted) {
+                                              toplace = textEditingController;
+                                              return TextField(
+                                                controller:
+                                                    textEditingController,
+                                                focusNode: focusNode,
+                                                decoration: InputDecoration(
+                                                  hintText: "To",
+                                                  hintStyle:
+                                                      GoogleFonts.montserrat(
+                                                          fontSize: 21),
+                                                  prefixIcon: Icon(
+                                                      Icons.directions_bus),
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  TextField(
+                                    controller: datecontroller,
+                                    decoration: InputDecoration(
+                                      labelText: "Select Date",
+                                      prefixIcon: InkWell(
+                                        onTap: () async {
+                                          final DateTime? picked =
+                                              await showDatePicker(
+                                            context: context,
+                                            initialDate: DateTime.now(),
+                                            firstDate: DateTime(2025),
+                                            lastDate: DateTime(2050),
+                                          );
+                                          if (picked != null) {
+                                            datecontroller.text =
+                                                picked.toString().split(' ')[0];
+                                          }
+                                        },
+                                        child:
+                                            Icon(Icons.calendar_month_outlined),
+                                      ),
+                                    ),
+                                    readOnly: true,
+                                  )
+                                ],
+                              ),
+                            )
                           ],
                         ),
                       ),
-                    ),
+                      SizedBox(height: 10),
+                      InkWell(
+                        onTap: () {
+                          if (fromplace.text.isNotEmpty &&
+                              toplace.text.isNotEmpty &&
+                              datecontroller.text.isNotEmpty) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SearchbusScreen(
+                                  date: datecontroller.text,
+                                  from: fromplace.text,
+                                  to: toplace.text,
+                                ),
+                              ),
+                            );
+                          }
+                        },
+                        child: Container(
+                          height: 50,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.search,
+                                color: Colors.white,
+                                size: 20,
+                              ),
+                              SizedBox(width: 5),
+                              Text(
+                                "Search buses",
+                                style: GoogleFonts.montserrat(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ));
+                ),
+              ),
+            ),
+          ),
+        );
       },
       child: Column(
         children: [

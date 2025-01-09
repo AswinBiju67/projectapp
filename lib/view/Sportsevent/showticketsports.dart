@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:projectapp/controller/ticketcontroller.dart';
+import 'package:projectapp/view/Amusementpark/parkdetails.dart';
 import 'package:projectapp/view/homescreen/homescreen.dart';
+import 'package:provider/provider.dart';
 import 'package:ticket_widget/ticket_widget.dart';
 
 
@@ -53,6 +56,7 @@ class TicketData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sports=context.watch<Ticketcontroller>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -88,10 +92,10 @@ class TicketData extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ticketDetailsWidget('Persons', '2', 'Date', '28-08-2025'),
+              ticketDetailsWidget('Persons', sports.person.toString(), 'Date', '28-08-2025'),
               Padding(
                 padding: const EdgeInsets.only(top: 12.0, right: 52.0),
-                child: ticketDetailsWidget('Ticket No', '6415', 'Price', '400'),
+                child: ticketDetailsWidget('Ticket No', '6415', 'Price', sports.ratesp.toString()),
               ),
               
             ],

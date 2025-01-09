@@ -4,7 +4,10 @@ import 'package:projectapp/view/busscreen/boardingpoint.dart';
 import 'package:projectapp/view/busscreen/dropponit.dart';
 
 class BoardingScreen extends StatefulWidget {
-  const BoardingScreen({super.key});
+  String? date;
+  String? from;
+  String? to;
+   BoardingScreen({super.key,this.date,this.from,this.to});
 
   @override
   State<BoardingScreen> createState() => _BoardingScreenState();

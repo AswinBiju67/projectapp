@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:projectapp/controller/ticketcontroller.dart';
 import 'package:projectapp/view/busscreen/ticket.dart';
+import 'package:provider/provider.dart';
 import 'package:razorpay_web/razorpay_web.dart';
 
 class Passinfo extends StatefulWidget {
-  const Passinfo({super.key});
+  String? date;
+  String? from;
+  String? to;
+   Passinfo({super.key,this.date,this.from,this.to});
 
   @override
   State<Passinfo> createState() => _PassinfoState();
@@ -17,6 +22,7 @@ class _PassinfoState extends State<Passinfo> {
   }
 
   void handlePaymentSuccessResponse(PaymentSuccessResponse response) {
+    context.read<Ticketcontroller>().additem(vech: "Bus Ticket", vechtype: "KSRTC", from: widget.from!, to: widget.to!, price: 855, date: widget.date!, pass: 1);
     Navigator.push(
         context, MaterialPageRoute(builder: (builder) => MyTicketView()));
     print(response.paymentId);
